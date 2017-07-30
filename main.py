@@ -1,28 +1,37 @@
 from random import randint
 from collections import Counter
 
-
-# Parameters - mainly to be used in future version
-min = 0
-max = 366
-testsPer = 30
-numPeople = 23
+# Parameters
+upperLimit = 366
+testsPer = 30  # where testsPer >=1
 
 
-def generateArr(low, high, numPeople):
+def main(upperLimit, testsPer):
+    results = [0 for x in range(upperLimit)]
+    for j in range(upperLimit):
+        sum = 0
+        for k in range(testsPer):
+            match = testDays(generateArr(j))
+            sum += match
+        avg = sum/testsPer
+        results[j] = avg
+    print(results)
+
+
+def generateArr(numPeople):
     arr = [randint(1, 365)for _ in range(numPeople)]
     arr = sorted(arr)
     return arr
 
 
-def runTest(arr):
-    match = False
+def testDays(arr):
+    match = 0
     for i in range(len(arr)-1):
         if arr[i] == arr[i+1]:
-            match = True
+            match = 1
             break
-    print(match)
+    return match
 
 
-arr = generateArr(low, high, numPer)
-runTest(arr)
+if __name__ == '__main__':
+    main(upperLimit, testsPer)
