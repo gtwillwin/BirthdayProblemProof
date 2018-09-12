@@ -1,30 +1,29 @@
 from random import randint
-from collections import Counter
 
 # Parameters
-upperLimit = 366
-testsPer = 30  # where testsPer >=1
+upperLimit = 366 #366
+testsper = 100  # where testsPer >=1
 
 
-def main(upperLimit, testsPer):
-    results = [0 for x in range(upperLimit)]
-    for j in range(upperLimit):
+def main(upperlimit, testsper):
+    results = [0 for x in range(upperlimit)]
+    for j in range(upperlimit):
         sum = 0
-        for k in range(testsPer):
-            match = testDays(generateArr(j))
+        for k in range(testsper):
+            match = testdays(generatearr(j))
             sum += match
-        avg = sum/testsPer
-        results[j] = avg
+        ratio = float(sum)/float(testsper)
+        results[j] = ratio
     print(results)
 
 
-def generateArr(numPeople):
-    arr = [randint(1, 365)for _ in range(numPeople)]
+def generatearr(numpeople):
+    arr = [randint(1, 365)for _ in range(numpeople)]
     arr = sorted(arr)
     return arr
 
 
-def testDays(arr):
+def testdays(arr):
     match = 0
     for i in range(len(arr)-1):
         if arr[i] == arr[i+1]:
@@ -34,4 +33,4 @@ def testDays(arr):
 
 
 if __name__ == '__main__':
-    main(upperLimit, testsPer)
+    main(upperLimit, testsper)
