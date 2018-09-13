@@ -2,14 +2,14 @@ from random import randint
 
 
 # Parameters
-max_people_tested = 366
+days_in_year = 365
 tests_per = 100  # where tests_per >= 1
 
 
 def main():
-    results = [0 for x in range(max_people_tested)]
+    results = [0 for x in range(days_in_year)]
 
-    for j in range(max_people_tested):
+    for j in range(days_in_year):
         sum = 0
 
         for k in range(tests_per):
@@ -23,7 +23,7 @@ def main():
 
 
 def generate_birthdays(num_people):
-    return sorted([randint(1, max_people_tested) for _ in range(num_people)])
+    return sorted([randint(1, days_in_year) for _ in range(num_people)])
 
 
 def test_days(birthdays):
