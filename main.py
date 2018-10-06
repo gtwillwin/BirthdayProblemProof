@@ -5,7 +5,7 @@ import numpy as np
 
 # Parameters
 max_people = 100
-tests_per = 1000  # where tests_per >= 1
+tests_per = 10000  # where tests_per >= 1
 
 
 def main():
@@ -25,7 +25,7 @@ def main():
 
 
 def generate_birthdays(num_people):
-    return sorted([randint(1, max_people) for _ in range(num_people)])
+    return sorted([randint(1, 365) for _ in range(num_people)])
 
 
 def test_days(birthdays):
@@ -45,7 +45,6 @@ def graph(results, formula):
     x = np.array(range(0, 100))
     y = formula(x)
     plt.plot(y, label="theoretical")
-
 
     plt.xlabel("People in room")
     plt.ylabel("Percentage of tests with birthday match")
