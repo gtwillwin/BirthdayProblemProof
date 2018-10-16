@@ -4,8 +4,9 @@ import numpy as np
 
 
 # Parameters
-max_people = 100
+max_people = 100 # Maximum number of people per test. Will run tests from 1 person to max_people.
 tests_per = 5001  # where tests_per >= 1
+graph_interval = 100 # where 0 < graph_interval < tests_per. Number of tests between each time a graph is generated.
 
 
 def main():
@@ -19,7 +20,7 @@ def main():
             sum += match
             results[k, j] = sum/k
 
-    graph(results, my_formula, 100) #
+    graph(results, curve_approximation, graph_interval) #
 
 
 def generate_birthdays(num_people):
@@ -37,10 +38,10 @@ def test_days(birthdays):
     return match
 
 
-def graph(results, formula, dif):
+def graph(results, formula, graph_interval):
     i = 0
     while i < tests_per:
-        if i % dif == 0:
+        if i % graph_interval == 0:
             plt.plot(results[i], label="experimental")
 
             x = np.array(range(0, 100))
@@ -62,8 +63,8 @@ def graph(results, formula, dif):
         i += 1
 
 
-def my_formula(x):
-    return 1 - np.e**(-(x * x) / 730)
+def curve_approximation(x):
+    return 1 - np.e**(-(x * x) / 730) # A good approximation of the probability of birthday matches.
 
 
 if __name__ == '__main__':
